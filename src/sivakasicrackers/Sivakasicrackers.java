@@ -20,7 +20,7 @@ public class Sivakasicrackers {
         try {
             UIManager.setLookAndFeel(new FlatDarkLaf());
         } catch (Exception e) {
-            System.out.println("Dark");
+            System.out.println("Error {flatdarklaf}");
         }
         new LogoPage().setVisible(true);
         
