@@ -63,6 +63,7 @@ public class AdminPage extends javax.swing.JFrame {
                 "S.No", "Name", "Price", "Quantity"
             }
         ));
+        jTable1.setShowGrid(true);
         jScrollPane1.setViewportView(jTable1);
 
         jLabel2.setText("Name");

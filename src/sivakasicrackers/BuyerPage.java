@@ -72,6 +72,7 @@ public class BuyerPage extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.setShowGrid(true);
         jScrollPane1.setViewportView(jTable1);
 
         jLabel2.setText("Total  :");
