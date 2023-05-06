@@ -4,9 +4,6 @@
  */
 package sivakasicrackers;
 
-import com.formdev.flatlaf.FlatDarkLaf;
-import javax.swing.UIManager;
-
 /**
  *
  * @author justin
@@ -81,6 +78,7 @@ public class HomePage extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.setVisible(false);
         new BuyerPage(this).setVisible(true);
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -90,6 +88,7 @@ public class HomePage extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new HomePage().setVisible(true);
             }

@@ -4,10 +4,8 @@
  */
 package sivakasicrackers;
 
-import com.formdev.flatlaf.FlatDarkLaf;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.UIManager;
 
 /**
  *
@@ -75,6 +73,7 @@ public class LogoPage extends javax.swing.JFrame {
         
         
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new LogoPage().setVisible(true);
             }

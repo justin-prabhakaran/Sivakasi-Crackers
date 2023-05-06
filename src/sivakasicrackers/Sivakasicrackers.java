@@ -6,6 +6,7 @@ package sivakasicrackers;
 
 import com.formdev.flatlaf.FlatDarkLaf;
 import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
@@ -19,7 +20,7 @@ public class Sivakasicrackers {
     public static void main(String[] args) {
         try {
             UIManager.setLookAndFeel(new FlatDarkLaf());
-        } catch (Exception e) {
+        } catch (UnsupportedLookAndFeelException e) {
             System.out.println("Error {flatdarklaf}");
         }
         new LogoPage().setVisible(true);
