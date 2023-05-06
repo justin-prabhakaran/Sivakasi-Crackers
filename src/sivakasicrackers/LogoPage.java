@@ -36,7 +36,7 @@ public class LogoPage extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setLocation(new java.awt.Point(500, 500));
+        setLocation(new java.awt.Point(200, 100));
 
         jLabel2.setFont(new java.awt.Font("Ubuntu", 1, 48)); // NOI18N
         jLabel2.setText("Crackers");

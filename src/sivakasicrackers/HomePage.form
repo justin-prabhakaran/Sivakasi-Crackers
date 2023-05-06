@@ -4,7 +4,7 @@
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
     <Property name="location" type="java.awt.Point" editor="org.netbeans.beaninfo.editors.PointEditor">
-      <Point value="[0, 0]"/>
+      <Point value="[200, 100]"/>
     </Property>
   </Properties>
   <SyntheticProperties>
@@ -32,7 +32,7 @@
                   <Component id="jButton2" min="-2" pref="119" max="-2" attributes="0"/>
                   <Component id="jButton1" min="-2" pref="119" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="215" max="32767" attributes="0"/>
+              <EmptySpace pref="161" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
