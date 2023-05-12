@@ -92,6 +92,11 @@ public class AdminPage extends javax.swing.JFrame {
         });
 
         jButton3.setText("Delete");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Cancel");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -263,6 +268,51 @@ public class AdminPage extends javax.swing.JFrame {
         txtQuatity.setText(quantity);
       
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        try {
+            // Load the MySQL JDBC driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            // Set up the database connection parameters
+            String url = "jdbc:mysql://localhost:3306/crackersdb?zeroDateTimeBehavior=CONVERT_TO_NULL";
+            String username = "justin";
+            String password = "justinpassword";
+            // Connect to the database
+            
+            Connection connection = DriverManager.getConnection(url,username,password);
+            System.out.println("Connected to the database!");
+
+            // Do something with the database connection here...
+            Statement statement = connection.createStatement();
+            
+            int sno = Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(),0).toString());
+            String qry = "DELETE FROM CRACKERS_TABLE WHERE SNO = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(qry);
+        
+            preparedStatement.setInt(1,sno);
+
+            preparedStatement.execute();
+            txtName.setText("");
+            txtPrice.setText("");
+            txtQuatity.setText("");
+//            ResultSet resultSet = statement.executeQuery("SELECT * FROM CRACKERS_TABLE");
+//            while(resultSet.next()){
+//                int sno = resultSet.getInt("SNO");
+//                String name = resultSet.getString("NAME");
+//                int price = resultSet.getInt("PRICE");
+//                int quantity = resultSet.getInt("QUANTITY");
+//                
+//            }
+            // Close the database connection
+            connection.close();
+            System.out.println("Disconnected from the database.");
+            updatetable();
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
