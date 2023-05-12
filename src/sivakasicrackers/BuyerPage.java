@@ -4,8 +4,12 @@
  */
 package sivakasicrackers;
 
-import java.awt.HeadlessException;
-import javax.swing.JLabel;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -20,10 +24,15 @@ public class BuyerPage extends javax.swing.JFrame {
     public BuyerPage(javax.swing.JFrame obj){
         this.obj = obj;
         initComponents();
+        updateTable();
+        setfalsetable();
+        
     }
 
     public BuyerPage() {
         initComponents();
+        updateTable();
+        setfalsetable();
     }
 
     /**
@@ -50,8 +59,7 @@ public class BuyerPage extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
                 "S.No", "Name", "Quantity", "Price", "Selected", "Qty"
@@ -73,6 +81,11 @@ public class BuyerPage extends javax.swing.JFrame {
             }
         });
         jTable1.setShowGrid(true);
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jLabel2.setText("Total  :");
@@ -80,6 +93,11 @@ public class BuyerPage extends javax.swing.JFrame {
         jLabel3.setText("0");
 
         jButton1.setText("Buy");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Cancel");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -134,6 +152,14 @@ public class BuyerPage extends javax.swing.JFrame {
         obj.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+       
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        thread();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -168,6 +194,80 @@ public class BuyerPage extends javax.swing.JFrame {
             }
         });
     }
+    void updateTable(){
+         try {
+            // Load the MySQL JDBC driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            // Set up the database connection parameters
+            String url = "jdbc:mysql://localhost:3306/crackersdb?zeroDateTimeBehavior=CONVERT_TO_NULL";
+            String username = "justin";
+            String password = "justinpassword";
+            // Connect to the database
+            
+            Connection connection = DriverManager.getConnection(url,username,password);
+            System.out.println("Connected to the database!");
+
+            // Do something with the database connection here...
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM CRACKERS_TABLE");
+            while(resultSet.next()){
+                int sno = resultSet.getInt("SNO");
+                String name = resultSet.getString("NAME");
+                int price = resultSet.getInt("PRICE");
+                int quantity = resultSet.getInt("QUANTITY");
+                
+                DefaultTableModel defaultTableModel = (DefaultTableModel) jTable1.getModel();
+                String[] data = {
+                    String.valueOf(sno),
+                    name,
+                    String.valueOf(price),
+                    String.valueOf(quantity)
+                }; 
+                defaultTableModel.addRow(data);
+                
+            }
+            // Close the database connection
+            connection.close();
+            System.out.println("Disconnected from the database.");
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }
+
+            
+   void thread(){
+       try{
+            int total = 0;
+            int size = jTable1.getRowCount();
+            for(int i =0;i<size;i++){
+           
+                String a = jTable1.getValueAt(i,4).toString();
+                if(a.isEmpty() || a.equals("")){
+                    continue;
+                }
+                else{
+                    if(Boolean.valueOf(a).equals(true)){
+                        total += Integer.parseInt(jTable1.getValueAt(i, 3).toString());
+                   }
+                } 
+            }
+             JOptionPane.showMessageDialog(null,"Total : " + total);
+            }catch(Exception e){
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(null,e.getMessage());
+            }
+   } 
+   void setfalsetable(){
+       try{
+            for(int i =0;i<jTable1.getRowCount();i++){
+                jTable1.setValueAt(false, i, 4);
+            }
+        }catch(Exception e ){
+            e.printStackTrace();
+        }
+   }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

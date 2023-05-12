@@ -1,4 +1,5 @@
 import java.sql.*;
+import javax.swing.JOptionPane;
 
 public class Connector {
     public static void main(String[] args) {
@@ -7,7 +8,7 @@ public class Connector {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             // Set up the database connection parameters
-            String url = "jdbc:mysql://localhost:3306/summa?zeroDateTimeBehavior=CONVERT_TO_NULL";
+            String url = "jdbc:mysql://localhost:3306/crackersdb?zeroDateTimeBehavior=CONVERT_TO_NULL";
             String username = "justin";
             String password = "justinpassword";
             // Connect to the database
@@ -28,10 +29,9 @@ public class Connector {
             // Close the database connection
             connection.close();
             System.out.println("Disconnected from the database.");
-        } catch (ClassNotFoundException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }
 }
