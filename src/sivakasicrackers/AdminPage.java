@@ -64,6 +64,11 @@ public class AdminPage extends javax.swing.JFrame {
             }
         ));
         jTable1.setShowGrid(true);
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jLabel2.setText("Name");
@@ -80,6 +85,11 @@ public class AdminPage extends javax.swing.JFrame {
         });
 
         jButton2.setText("Update");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Delete");
 
@@ -193,6 +203,66 @@ public class AdminPage extends javax.swing.JFrame {
         this.dispose();
         obj.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        try {
+            // Load the MySQL JDBC driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            // Set up the database connection parameters
+            String url = "jdbc:mysql://localhost:3306/crackersdb?zeroDateTimeBehavior=CONVERT_TO_NULL";
+            String username = "justin";
+            String password = "justinpassword";
+            // Connect to the database
+            
+            Connection connection = DriverManager.getConnection(url,username,password);
+            System.out.println("Connected to the database!");
+
+            // Do something with the database connection here...
+            Statement statement = connection.createStatement();
+            
+            int sno = Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(),0).toString());
+            String name = txtName.getText();
+            int price = Integer.parseInt(txtPrice.getText());
+            int quantity = Integer.parseInt(txtQuatity.getText());
+            String qry = "UPDATE CRACKERS_TABLE SET NAME = ?,PRICE =? ,QUANTITY = ? WHERE SNO = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(qry);
+            
+            preparedStatement.setString(1,name);
+            preparedStatement.setInt(2,price);
+            preparedStatement.setInt(3,quantity);
+            preparedStatement.setInt(4,sno);
+  
+            preparedStatement.execute();
+//            ResultSet resultSet = statement.executeQuery("SELECT * FROM CRACKERS_TABLE");
+//            while(resultSet.next()){
+//                int sno = resultSet.getInt("SNO");
+//                String name = resultSet.getString("NAME");
+//                int price = resultSet.getInt("PRICE");
+//                int quantity = resultSet.getInt("QUANTITY");
+//                
+//            }
+            // Close the database connection
+            connection.close();
+            System.out.println("Disconnected from the database.");
+            updatetable();
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+      
+        int row = jTable1.getSelectedRow();
+        String name = jTable1.getValueAt(row,1).toString();
+        String price = jTable1.getValueAt(row,2).toString();
+        String quantity = jTable1.getValueAt(row,3).toString();
+        txtName.setText(name);
+        txtPrice.setText(price);
+        txtQuatity.setText(quantity);
+      
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments
