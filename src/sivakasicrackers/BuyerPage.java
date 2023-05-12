@@ -48,7 +48,7 @@ public class BuyerPage extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        txtTotal = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
@@ -90,7 +90,7 @@ public class BuyerPage extends javax.swing.JFrame {
 
         jLabel2.setText("Total  :");
 
-        jLabel3.setText("0");
+        txtTotal.setText("0");
 
         jButton1.setText("Buy");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -119,7 +119,7 @@ public class BuyerPage extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(37, 37, 37))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jButton2)
@@ -135,7 +135,7 @@ public class BuyerPage extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel3))
+                    .addComponent(txtTotal))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
@@ -253,7 +253,9 @@ public class BuyerPage extends javax.swing.JFrame {
                    }
                 } 
             }
+             txtTotal.setText(String.valueOf(total));
              JOptionPane.showMessageDialog(null,"Total : " + total);
+            
             }catch(Exception e){
                 e.printStackTrace();
                 JOptionPane.showMessageDialog(null,e.getMessage());
@@ -273,9 +275,9 @@ public class BuyerPage extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JLabel txtTotal;
     // End of variables declaration//GEN-END:variables
 }
