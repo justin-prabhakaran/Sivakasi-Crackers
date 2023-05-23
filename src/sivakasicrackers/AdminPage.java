@@ -192,6 +192,7 @@ public class AdminPage extends javax.swing.JFrame {
             ps.setInt(3,Integer.parseInt(txtQuatity.getText()));
             
             ps.execute();
+            JOptionPane.showMessageDialog(null,"Data Inserted Successfully");
             // Close the database connection
             connection.close();
             System.out.println("Disconnected from the database.");
@@ -248,6 +249,7 @@ public class AdminPage extends javax.swing.JFrame {
 //            }
             // Close the database connection
             connection.close();
+            JOptionPane.showMessageDialog(null,"Data Updated Successfully");
             System.out.println("Disconnected from the database.");
             updatetable();
         } catch (Exception e) {
@@ -304,6 +306,7 @@ public class AdminPage extends javax.swing.JFrame {
 //                
 //            }
             // Close the database connection
+            JOptionPane.showMessageDialog(null,"Data Deleted Successfully");
             connection.close();
             System.out.println("Disconnected from the database.");
             updatetable();
@@ -354,7 +357,7 @@ public class AdminPage extends javax.swing.JFrame {
                 
                 String data[] = {String.valueOf(sno),name,String.valueOf(price),String.valueOf(quantity)};
                 
-                ;
+               
                 tableModel.addRow(data);
             }
             // Close the database connection
